@@ -1,6 +1,7 @@
 # Siteproxy 2.0
 <br />
 Siteproxy 2.0 utilizes service workers, making the proxy more stable and capable of handling more websites. It replaces Express with Hono to achieve a fourfold speed increase and supports deployment on Cloudflare Workers. It provides a reverse proxy, allowing access to YouTube/Google without needing to bypass internet censorship, and supports GitHub and Telegram web logins. This online proxy operates entirely within web pages, requiring no client configuration, and provides reverse proxy access to the internet.
+<br />
 ```
                                                  +----> google/youtube
                              +----------------+  |
@@ -10,6 +11,7 @@ user browser +-------------->+ siteproxy      +-------> wikipedia
                              +----------------+  |
                                                  +----> chinese forums
 ```
+<br />
 Please do not use this project for illegal purposes, or you will bear the consequences.
 
 ## Contents
