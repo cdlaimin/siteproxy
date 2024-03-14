@@ -4,7 +4,7 @@
 <br />
 Siteproxy 2.0 使用了service worker, 使得代理更加稳定, 可以代理了的网站更多。
 同时使用hono替代express，速度提高4倍。 支持cloudflare worker部署。
-反向代理, 免翻墙访问youtube/google, 支持github和telegram web登录。
+反向代理, 免翻墙访问youtube/google, 支持github和telegram web登录(请注意不要通过不信任的代理登录)。
 纯web页面的在线代理， 客户端无需任何配置，反向代理到internet。 
 
 ```
@@ -24,6 +24,7 @@ user browser +-------------->+ siteproxy      +-------> wikipedia
 - [使用技巧](#使用技巧)
 - [部署到cloudflare_worker](#部署到cloudflare_worker)
 - [部署到vps或者云服务器](#部署到vps或者云服务器)
+- [docker部署](#docker部署)
 - [联系方式](#联系方式)
 
 ### 特点
@@ -82,6 +83,19 @@ git clone https://your-proxy-domain.name/user-your-password/https/github.com/the
 7. 执行:nohup node bundle.js &
 8. 现在就可以在浏览器中访问你的域名了, 网址就是前面的proxy_url加上token_prefix.
 9. 如果想套CloudFlare加速, 可以参考CloudFlare说明
+```
+### docker部署
+```
+1. 配置域名对应的ssl证书和nginx，指向本地5006端口。
+2. git clone本项目.
+3. 打开并修改保存config.json文件:
+   {
+      "proxy_url": "https://your-proxy.domain.name", // 这个是你申请到的代理服务器域名
+      "token_prefix": "/user-SetYourPasswordHere/",  // 这个实际上是你的网站密码，用来防止非法访问,注意保留首尾的斜杠。
+      "description": "注意:token_prefix相当于网站密码，请谨慎设置。 proxy_url和token_prefix合起来就是访问网址。"
+   }
+4. 进入docker-node子目录。 sudo docker compose up
+5. 现在可以直接访问https://your-proxy-domain.name/user-your-password/, 就可以了。注意这里的域名和密码替换为你自己的域名和密码。
 ```
 ### 联系方式
 Telegram群: @siteproxy
